@@ -4,7 +4,8 @@ import java.lang.Math;
 import java.util.*;
 import java.util.stream.*;
 
-class Operation{
+class PangramProblem{
+
   void pangramProblem(){
     System.out.println("Enter the string");
     Scanner sc = new Scanner(System.in);
@@ -33,10 +34,7 @@ interface InterfaceImplementation{
   public void findArmStrongNumber();
 }
 
-class Implementation implements InterfaceImplementation{
-  public void displayInConsole(){
-    System.out.println("Hello World");
-  }
+class FindArmStrongNumber implements InterfaceImplementation{
 
   public void findArmStrongNumber(){
       System.out.println("Enter the number");
@@ -58,37 +56,35 @@ class Implementation implements InterfaceImplementation{
   }
 }
 
-class Program{
-  void pangramProblem(){
-    System.out.println("Enter the string");
+
+class ReverseString{
+  String str;
+
+  void getString(){
     Scanner sc = new Scanner(System.in);
-    String sentence = sc.nextLine();
-    List<Character> characterArray = new ArrayList();
-    for(int i=97; i<123; i++){
-      char c = (char)i;
-      characterArray.add(c);
+    this.str = sc.nextLine();
+  }
+
+  StringBuilder reverseString(){
+    StringBuilder reverseName = new StringBuilder(this.str);
+    int j = 0;
+    for(int i=this.str.length(); i>0; i--){
+      reverseName.setCharAt(j, this.str.charAt(i-1));
+      j++;
     }
-    for(int i=0; i<sentence.length(); i++){
-      int indexValue = characterArray.indexOf(Character.toLowerCase(sentence.charAt(i)));
-      if(indexValue >= 0){
-          characterArray.remove(indexValue);
-      }
-    }
-    if(characterArray.size() > 0){
-      System.out.println("The entered string is not a pangram");
-    }
-    else{
-      System.out.println("The entered string is a pangram");
-    }
+    return reverseName;
+  }
+
+  public void reverseAString(){
+    this.getString();
+    System.out.println(this.reverseString());
   }
 }
 
-public class javaProgram extends Implementation{
+class ShowName{
   String name;
-  String str;
-  double x, y;
-  Operation hp;
-  void display(){
+
+  public void display(){
     Scanner sc = new Scanner(System.in);
     this.name = sc.nextLine();
     if (this.name.length() > 0){
@@ -98,11 +94,10 @@ public class javaProgram extends Implementation{
       System.out.println("One for you and One for me");
     }
   }
+}
 
-  void getString(){
-    Scanner sc = new Scanner(System.in);
-    this.str = sc.nextLine();
-  }
+class PlayDartGame{
+  double x, y;
 
   double getCircleRadius(){
     double radius = Math.sqrt((this.x * this.x) + (this.y * this.y));
@@ -132,34 +127,14 @@ public class javaProgram extends Implementation{
     }
   }
 
-  StringBuilder reverseString(){
-    StringBuilder reverseName = new StringBuilder(this.str);
-    int j = 0;
-    for(int i=this.str.length(); i>0; i--){
-      reverseName.setCharAt(j, this.str.charAt(i-1));
-      j++;
-    }
-    return reverseName;
+  public void playDartGame(){
+    this.getCoordinates();
+    double circleRadius = this.getCircleRadius();
+    System.out.println(this.getDartPoints(circleRadius));
   }
+}
 
-  public void findArmStrongNumber(){
-      System.out.println("Enter the number");
-      Scanner sc = new Scanner(System.in);
-      String number = sc.nextLine();
-      int firstNumber = Integer.parseInt(number);
-      Double armStrongNumber = new Double(0);
-      for(int i=0; i<number.length(); i++){
-          Double d= new Double(Character.getNumericValue(number.charAt(i)));
-          armStrongNumber = armStrongNumber + Math.pow(d, number.length());
-      }
-      int convertedNumber = armStrongNumber.intValue();
-      if(convertedNumber == firstNumber){
-        System.out.println("It is an armStrongNumber");
-      }
-      else{
-        System.out.println("It is not an armStrongNumber");
-      }
-  }
+class RnaTranscriptionProblem{
 
   void rnaTranscription(){
     String dnaComponent[] = {"G", "C", "T", "A"};
@@ -177,40 +152,18 @@ public class javaProgram extends Implementation{
     }
     System.out.println(rnaValue);
   }
+}
 
-  int getMinimumValueFromArray(Integer[] givenArray){
-    Integer changedArray[] = new Integer[givenArray.length];
-    int min = Collections.min(Arrays.asList(givenArray));
-    for(int i=0; i<givenArray.length; i++){
-      if(givenArray[i] != min){
-        changedArray[i] = givenArray[i];
-      }
-      else{
-        changedArray[i] = 0;
-      }
-    }
-    return min;
-  }
+class AggregationExample{
+  PangramProblem hp;
 
-  void generateTrollValues(){
-    Map< String,int[]> trollValuesMap = new HashMap< String,int[]>();
-    trollValuesMap.put("strength", new int[6]);
-    trollValuesMap.put("dexterity", new int[6]);
-    trollValuesMap.put("constitution", new int[6]);
-    trollValuesMap.put("intelligence", new int[6]);
-    trollValuesMap.put("wisdom", new int[6]);
-    trollValuesMap.put("charisma", new int[6]);
-    Set set=trollValuesMap.entrySet();
-    Iterator itr=set.iterator();
-    while(itr.hasNext()){
-      Map.Entry entry=(Map.Entry)itr.next();
-      //entry = fillValues(entry);
-      //int[] s = entry.getValue();
-      //int arrayLength = s.length;
-      //System.out.println(arrayLength);
-    }
-    int newArray[] = trollValuesMap.get("constitution");
+  void panagram(){
+    hp = new PangramProblem();
+    hp.pangramProblem();
   }
+}
+
+class TrollValueProblem extends AggregationExample{
 
   Integer[] fillValues(int size){
     Integer valuesArray[] = {1, 2, 3, 4, 5, 6};
@@ -272,15 +225,20 @@ public class javaProgram extends Implementation{
     System.out.println(hitPoints);
   }
 
-  void panagram(){
-    hp = new Operation();
-    hp.pangramProblem();
+  public void trollValueProblem(){
+      this.getTrollValues();
   }
+}
 
+public class javaProgram extends TrollValueProblem{
   public static void main(String[] args){
-      //InterfaceImplementation A = new Implementation();
-      //A.findArmStrongNumber();
+      System.out.println("Troll value problem");
       javaProgram pro = new javaProgram();
-      pro.getTrollValues();
+      pro.trollValueProblem();
+      System.out.println("Interface example - Armstrong number problem");
+      InterfaceImplementation example = new FindArmStrongNumber();
+      example.findArmStrongNumber();
+      System.out.println("Aggregation example - Pangram problem");
+      pro.panagram();
   }
 }
